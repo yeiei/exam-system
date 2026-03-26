@@ -1,0 +1,298 @@
+const express = require('express');
+const session = require('express-session');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const bcrypt = require('bcryptjs');
+
+const app = express();
+const PORT = 3000;
+const DATA_DIR = path.join(__dirname, '..', 'data');
+
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+const usersFile = path.join(DATA_DIR, 'users.json');
+const recordsFile = path.join(DATA_DIR, 'records.json');
+const wrongFile = path.join(DATA_DIR, 'wrong.json');
+const questionsFile = path.join(DATA_DIR, 'questions.json');
+
+function loadJson(file, defaultVal) {
+  try {
+    if (fs.existsSync(file)) {
+      return JSON.parse(fs.readFileSync(file, 'utf8'));
+    }
+  } catch (e) {}
+  return defaultVal;
+}
+
+function saveJson(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+var users = loadJson(usersFile, []);
+var records = loadJson(recordsFile, []);
+var wrongQuestions = loadJson(wrongFile, []);
+var questions = loadJson(questionsFile, []);
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+});
+
+app.use(session({
+  secret: 'exam-secret-key-2024',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 }
+}));
+
+app.post('/api/register', async function(req, res) {
+  try {
+    var username = req.body.username;
+    var password = req.body.password;
+    if (!username || !password) {
+      return res.json({ success: false, message: '请填写用户名和密码' });
+    }
+    
+    if (users.find(function(u) { return u.username === username; })) {
+      return res.json({ success: false, message: '用户名已存在' });
+    }
+    
+    var hashedPassword = await bcrypt.hash(password, 10);
+    var id = Date.now();
+    users.push({ id: id, username: username, password: hashedPassword });
+    saveJson(usersFile, users);
+    
+    res.json({ success: true, message: '注册成功' });
+  } catch (err) {
+    res.json({ success: false, message: '注册失败' });
+  }
+});
+
+app.post('/api/login', async function(req, res) {
+  try {
+    var username = req.body.username;
+    var password = req.body.password;
+    var user = users.find(function(u) { return u.username === username; });
+    
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.json({ success: false, message: '用户名或密码错误' });
+    }
+    
+    req.session.userId = user.id;
+    req.session.username = user.username;
+    
+    res.json({ success: true, username: user.username });
+  } catch (err) {
+    res.json({ success: false, message: '登录失败' });
+  }
+});
+
+app.post('/api/logout', function(req, res) {
+  req.session.destroy();
+  res.json({ success: true });
+});
+
+app.get('/api/me', function(req, res) {
+  if (req.session.userId) {
+    res.json({ loggedIn: true, username: req.session.username });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
+
+app.get('/api/questions', function(req, res) {
+  var count = req.query.count || 50;
+  var mode = req.query.mode || 'exam';
+  
+  if (questions.length === 0) {
+    return res.json({ success: false, message: '题库为空，请先导入题库' });
+  }
+  
+  // 只有考试模式随机选题，背题和练习按顺序
+  var selected;
+  if (mode === 'exam') {
+    // 考试随机抽100题：单选题60、多选20、判断20
+    var single = questions.filter(function(q) { return q.question_type === '单选题'; });
+    var multi = questions.filter(function(q) { return q.question_type === '多选题'; });
+    var judge = questions.filter(function(q) { return q.question_type === '判断题'; });
+    
+    // 随机打乱每种类型
+    function shuffle(arr) {
+      return arr.sort(function() { return Math.random() - 0.5; });
+    }
+    
+    var selectedSingle = shuffle(single).slice(0, 60);
+    var selectedMulti = shuffle(multi).slice(0, 20);
+    var selectedJudge = shuffle(judge).slice(0, 20);
+    
+    // 合并并打乱顺序
+    selected = shuffle(selectedSingle.concat(selectedMulti, selectedJudge));
+  } else {
+    selected = questions.slice(0, parseInt(count));
+  }
+  
+  selected = selected.map(function(q) {
+    var data = {
+      id: q.id,
+      question_type: q.question_type,
+      content: q.content,
+      option_a: q.option_a,
+      option_b: q.option_b,
+      option_c: q.option_c,
+      option_d: q.option_d,
+      option_e: q.option_e
+    };
+    // 背题模式和练习模式返回答案（练习需要即时反馈）
+    if (mode === 'review' || mode === 'practice') {
+      data.answer = q.answer;
+    }
+    return data;
+  });
+  
+  res.json({ success: true, questions: selected });
+});
+
+app.post('/api/submit', function(req, res) {
+  if (!req.session.userId) {
+    return res.json({ success: false, message: '请先登录' });
+  }
+  
+  var answers = req.body.answers;
+  var userId = req.session.userId;
+  
+  var correctCount = 0;
+  var wrongCount = 0;
+  
+  for (var qId in answers) {
+    var userAnswer = answers[qId];
+    var question = questions.find(function(q) { return q.id == qId; });
+    if (!question) continue;
+    
+    var userAns = Array.isArray(userAnswer) ? userAnswer.join('') : userAnswer;
+    // 对多选题排序后比较，避免顺序问题导致误判
+    var correctSorted = question.answer ? question.answer.toUpperCase().split('').sort().join('') : '';
+    var userSorted = userAns ? userAns.toUpperCase().split('').sort().join('') : '';
+    var isCorrect = userSorted && userSorted === correctSorted;
+    
+    if (isCorrect) {
+      correctCount++;
+    } else {
+      wrongCount++;
+      wrongQuestions.push({
+        id: Date.now() + Math.random(),
+        user_id: userId,
+        question_id: question.id,
+        user_answer: userAns || '',
+        created_at: new Date().toISOString()
+      });
+    }
+  }
+  
+  var total = correctCount + wrongCount;
+  var score = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+  
+  records.push({
+    id: Date.now(),
+    user_id: userId,
+    total_questions: total,
+    correct_count: correctCount,
+    wrong_count: wrongCount,
+    score: score,
+    exam_time: total * 30,
+    created_at: new Date().toISOString()
+  });
+  
+  saveJson(recordsFile, records);
+  saveJson(wrongFile, wrongQuestions);
+  
+  res.json({ success: true, correctCount: correctCount, wrongCount: wrongCount, score: score, total: total });
+});
+
+app.get('/api/records', function(req, res) {
+  if (!req.session.userId) {
+    return res.json({ success: false, message: '请先登录' });
+  }
+  
+  var userRecords = records
+    .filter(function(r) { return r.user_id === req.session.userId; })
+    .sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); })
+    .slice(0, 20);
+  
+  res.json({ success: true, records: userRecords });
+});
+
+app.get('/api/wrong', function(req, res) {
+  if (!req.session.userId) {
+    return res.json({ success: false, message: '请先登录' });
+  }
+  
+  var userWrong = wrongQuestions
+    .filter(function(w) { return w.user_id === req.session.userId; })
+    .sort(function(a, b) { return new Date(b.created_at) - new Date(a.created_at); });
+  
+  var result = userWrong.map(function(w) {
+    var q = questions.find(function(q) { return q.id == w.question_id; });
+    return {
+      wrong_id: w.id,
+      user_answer: w.user_answer,
+      created_at: w.created_at,
+      id: q ? q.id : null,
+      content: q ? q.content : null,
+      option_a: q ? q.option_a : null,
+      option_b: q ? q.option_b : null,
+      option_c: q ? q.option_c : null,
+      option_d: q ? q.option_d : null,
+      answer: q ? q.answer : null
+    };
+  }).filter(function(r) { return r.content; });
+  
+  res.json({ success: true, wrongQuestions: result });
+});
+
+app.delete('/api/wrong', function(req, res) {
+  if (!req.session.userId) {
+    return res.json({ success: false, message: '请先登录' });
+  }
+  
+  wrongQuestions = wrongQuestions.filter(function(w) { return w.user_id !== req.session.userId; });
+  saveJson(wrongFile, wrongQuestions);
+  res.json({ success: true });
+});
+
+app.get('/api/stats', function(req, res) {
+  if (!req.session.userId) {
+    return res.json({ success: false, message: '请先登录' });
+  }
+  
+  var userRecords = records.filter(function(r) { return r.user_id === req.session.userId; });
+  var userWrong = wrongQuestions.filter(function(w) { return w.user_id === req.session.userId; });
+  
+  var stats = {
+    total_exams: userRecords.length,
+    avg_score: userRecords.length > 0 
+      ? userRecords.reduce(function(sum, r) { return sum + r.score; }, 0) / userRecords.length 
+      : 0,
+    best_score: userRecords.length > 0 
+      ? Math.max.apply(null, userRecords.map(function(r) { return r.score; })) 
+      : 0,
+    total_correct: userRecords.reduce(function(sum, r) { return sum + r.correct_count; }, 0),
+    total_wrong: userRecords.reduce(function(sum, r) { return sum + r.wrong_count; }, 0),
+    wrong_count: userWrong.length
+  };
+  
+  res.json({ success: true, stats: stats });
+});
+
+app.listen(PORT, function() {
+  console.log('========================================');
+  console.log('  答题系统已启动!');
+  console.log('  访问地址: http://localhost:' + PORT);
+  console.log('  题库数量: ' + questions.length + ' 道');
+  console.log('========================================');
+});

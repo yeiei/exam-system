@@ -1,0 +1,17 @@
+{
+  "name": "exam-system",
+  "version": "1.0.0",
+  "description": "做题系统 - 监护人题库",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "import": "node src/import-questions.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "xlsx": "^0.18.5"
+  }
+}

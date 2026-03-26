@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1774235816125,
+    "user_id": 1774235805375,
+    "total_questions": 2,
+    "correct_count": 1,
+    "wrong_count": 1,
+    "score": 50,
+    "exam_time": 60,
+    "created_at": "2026-03-23T03:16:56.125Z"
+  },
+  {
+    "id": 1774250773806,
+    "user_id": 1774239017614,
+    "total_questions": 100,
+    "correct_count": 63,
+    "wrong_count": 37,
+    "score": 63,
+    "exam_time": 3000,
+    "created_at": "2026-03-23T07:26:13.806Z"
+  },
+  {
+    "id": 1774258544330,
+    "user_id": 1774258535350,
+    "total_questions": 3,
+    "correct_count": 3,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 90,
+    "created_at": "2026-03-23T09:35:44.330Z"
+  },
+  {
+    "id": 1774258549803,
+    "user_id": 1774258535350,
+    "total_questions": 1,
+    "correct_count": 0,
+    "wrong_count": 1,
+    "score": 0,
+    "exam_time": 30,
+    "created_at": "2026-03-23T09:35:49.803Z"
+  },
+  {
+    "id": 1774258666060,
+    "user_id": 1774258661451,
+    "total_questions": 3,
+    "correct_count": 3,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 90,
+    "created_at": "2026-03-23T09:37:46.060Z"
+  },
+  {
+    "id": 1774258824184,
+    "user_id": 1774258816979,
+    "total_questions": 100,
+    "correct_count": 21,
+    "wrong_count": 79,
+    "score": 21,
+    "exam_time": 3000,
+    "created_at": "2026-03-23T09:40:24.184Z"
+  },
+  {
+    "id": 1774258873859,
+    "user_id": 1774239017614,
+    "total_questions": 9,
+    "correct_count": 3,
+    "wrong_count": 6,
+    "score": 33,
+    "exam_time": 270,
+    "created_at": "2026-03-23T09:41:13.859Z"
+  },
+  {
+    "id": 1774258900788,
+    "user_id": 1774239017614,
+    "total_questions": 13,
+    "correct_count": 5,
+    "wrong_count": 8,
+    "score": 38,
+    "exam_time": 390,
+    "created_at": "2026-03-23T09:41:40.788Z"
+  },
+  {
+    "id": 1774259303586,
+    "user_id": 1774239017614,
+    "total_questions": 1,
+    "correct_count": 0,
+    "wrong_count": 1,
+    "score": 0,
+    "exam_time": 30,
+    "created_at": "2026-03-23T09:48:23.586Z"
+  },
+  {
+    "id": 1774259313138,
+    "user_id": 1774239017614,
+    "total_questions": 2,
+    "correct_count": 2,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 60,
+    "created_at": "2026-03-23T09:48:33.138Z"
+  },
+  {
+    "id": 1774259329605,
+    "user_id": 1774239017614,
+    "total_questions": 4,
+    "correct_count": 4,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 120,
+    "created_at": "2026-03-23T09:48:49.605Z"
+  },
+  {
+    "id": 1774259330650,
+    "user_id": 1774239017614,
+    "total_questions": 4,
+    "correct_count": 4,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 120,
+    "created_at": "2026-03-23T09:48:50.650Z"
+  },
+  {
+    "id": 1774259359620,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 0,
+    "wrong_count": 3,
+    "score": 0,
+    "exam_time": 90,
+    "created_at": "2026-03-23T09:49:19.620Z"
+  },
+  {
+    "id": 1774259452352,
+    "user_id": 1774259452213,
+    "total_questions": 10,
+    "correct_count": 10,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 300,
+    "created_at": "2026-03-23T09:50:52.352Z"
+  },
+  {
+    "id": 1774259838715,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 3,
+    "wrong_count": 0,
+    "score": 100,
+    "exam_time": 90,
+    "created_at": "2026-03-23T09:57:18.715Z"
+  },
+  {
+    "id": 1774259902529,
+    "user_id": 1774259902394,
+    "total_questions": 5,
+    "correct_count": 3,
+    "wrong_count": 2,
+    "score": 60,
+    "exam_time": 150,
+    "created_at": "2026-03-23T09:58:22.529Z"
+  },
+  {
+    "id": 1774260254952,
+    "user_id": 1774239017614,
+    "total_questions": 5,
+    "correct_count": 0,
+    "wrong_count": 5,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:04:14.952Z"
+  },
+  {
+    "id": 1774260458505,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 1,
+    "wrong_count": 2,
+    "score": 33,
+    "exam_time": 90,
+    "created_at": "2026-03-23T10:07:38.505Z"
+  },
+  {
+    "id": 1774260497751,
+    "user_id": 1774239017614,
+    "total_questions": 1,
+    "correct_count": 0,
+    "wrong_count": 1,
+    "score": 0,
+    "exam_time": 30,
+    "created_at": "2026-03-23T10:08:17.751Z"
+  },
+  {
+    "id": 1774260571847,
+    "user_id": 1774260571702,
+    "total_questions": 0,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 0,
+    "created_at": "2026-03-23T10:09:31.847Z"
+  },
+  {
+    "id": 1774260583645,
+    "user_id": 1774260571702,
+    "total_questions": 100,
+    "correct_count": 19,
+    "wrong_count": 81,
+    "score": 19,
+    "exam_time": 3000,
+    "created_at": "2026-03-23T10:09:43.645Z"
+  },
+  {
+    "id": 1774260666297,
+    "user_id": 1774239017614,
+    "total_questions": 15,
+    "correct_count": 7,
+    "wrong_count": 8,
+    "score": 47,
+    "exam_time": 450,
+    "created_at": "2026-03-23T10:11:06.297Z"
+  },
+  {
+    "id": 1774260704140,
+    "user_id": 1774239017614,
+    "total_questions": 15,
+    "correct_count": 7,
+    "wrong_count": 8,
+    "score": 47,
+    "exam_time": 450,
+    "created_at": "2026-03-23T10:11:44.140Z"
+  },
+  {
+    "id": 1774260704979,
+    "user_id": 1774239017614,
+    "total_questions": 15,
+    "correct_count": 7,
+    "wrong_count": 8,
+    "score": 47,
+    "exam_time": 450,
+    "created_at": "2026-03-23T10:11:44.979Z"
+  },
+  {
+    "id": 1774260753009,
+    "user_id": 1774239017614,
+    "total_questions": 13,
+    "correct_count": 4,
+    "wrong_count": 9,
+    "score": 31,
+    "exam_time": 390,
+    "created_at": "2026-03-23T10:12:33.009Z"
+  },
+  {
+    "id": 1774260855941,
+    "user_id": 1774239017614,
+    "total_questions": 13,
+    "correct_count": 3,
+    "wrong_count": 10,
+    "score": 23,
+    "exam_time": 390,
+    "created_at": "2026-03-23T10:14:15.941Z"
+  },
+  {
+    "id": 1774260948407,
+    "user_id": 1774239017614,
+    "total_questions": 25,
+    "correct_count": 4,
+    "wrong_count": 21,
+    "score": 16,
+    "exam_time": 750,
+    "created_at": "2026-03-23T10:15:48.407Z"
+  },
+  {
+    "id": 1774261004435,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 0,
+    "wrong_count": 3,
+    "score": 0,
+    "exam_time": 90,
+    "created_at": "2026-03-23T10:16:44.435Z"
+  },
+  {
+    "id": 1774261053222,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 2,
+    "wrong_count": 1,
+    "score": 67,
+    "exam_time": 90,
+    "created_at": "2026-03-23T10:17:33.222Z"
+  },
+  {
+    "id": 1774261328904,
+    "user_id": 1774239017614,
+    "total_questions": 5,
+    "correct_count": 2,
+    "wrong_count": 3,
+    "score": 40,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:22:08.904Z"
+  },
+  {
+    "id": 1774262153522,
+    "user_id": 1774262141895,
+    "total_questions": 5,
+    "correct_count": 4,
+    "wrong_count": 1,
+    "score": 80,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:35:53.522Z"
+  },
+  {
+    "id": 1774262191315,
+    "user_id": 1774262141895,
+    "total_questions": 2,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 60,
+    "created_at": "2026-03-23T10:36:31.315Z"
+  },
+  {
+    "id": 1774262200292,
+    "user_id": 1774262141895,
+    "total_questions": 100,
+    "correct_count": 22,
+    "wrong_count": 78,
+    "score": 22,
+    "exam_time": 3000,
+    "created_at": "2026-03-23T10:36:40.292Z"
+  },
+  {
+    "id": 1774262852697,
+    "user_id": 1774262852546,
+    "total_questions": 5,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:47:32.697Z"
+  },
+  {
+    "id": 1774263036253,
+    "user_id": 1774239017614,
+    "total_questions": 1,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 30,
+    "created_at": "2026-03-23T10:50:36.253Z"
+  },
+  {
+    "id": 1774263117726,
+    "user_id": 1774263117605,
+    "total_questions": 5,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:51:57.726Z"
+  },
+  {
+    "id": 1774263127852,
+    "user_id": 1774263127719,
+    "total_questions": 0,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 0,
+    "created_at": "2026-03-23T10:52:07.852Z"
+  },
+  {
+    "id": 1774263185098,
+    "user_id": 1774239017614,
+    "total_questions": 2,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 60,
+    "created_at": "2026-03-23T10:53:05.098Z"
+  },
+  {
+    "id": 1774263219501,
+    "user_id": 1774263219397,
+    "total_questions": 5,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:53:39.501Z"
+  },
+  {
+    "id": 1774263328264,
+    "user_id": 1774239017614,
+    "total_questions": 3,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 90,
+    "created_at": "2026-03-23T10:55:28.264Z"
+  },
+  {
+    "id": 1774263496910,
+    "user_id": 1774239017614,
+    "total_questions": 5,
+    "correct_count": 0,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:58:16.910Z"
+  },
+  {
+    "id": 1774263585073,
+    "user_id": 1774263584968,
+    "total_questions": 5,
+    "correct_count": 5,
+    "wrong_count": 0,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T10:59:45.073Z"
+  },
+  {
+    "id": 1774263753438,
+    "user_id": 1774239017614,
+    "total_questions": 5,
+    "correct_count": 4,
+    "wrong_count": 1,
+    "score": 0,
+    "exam_time": 150,
+    "created_at": "2026-03-23T11:02:33.438Z"
+  },
+  {
+    "id": 1774263856220,
+    "user_id": 1774263856116,
+    "total_questions": 5,
+    "correct_count": 1,
+    "wrong_count": 4,
+    "score": 1,
+    "exam_time": 150,
+    "created_at": "2026-03-23T11:04:16.220Z"
+  },
+  {
+    "id": 1774263866894,
+    "user_id": 1774263866793,
+    "total_questions": 5,
+    "correct_count": 5,
+    "wrong_count": 0,
+    "score": 5,
+    "exam_time": 150,
+    "created_at": "2026-03-23T11:04:26.894Z"
+  },
+  {
+    "id": 1774263906072,
+    "user_id": 1774239017614,
+    "total_questions": 5,
+    "correct_count": 5,
+    "wrong_count": 0,
+    "score": 5,
+    "exam_time": 150,
+    "created_at": "2026-03-23T11:05:06.072Z"
+  },
+  {
+    "id": 1774264141381,
+    "user_id": 1774239017614,
+    "total_questions": 2,
+    "correct_count": 1,
+    "wrong_count": 1,
+    "score": 1,
+    "exam_time": 60,
+    "created_at": "2026-03-23T11:09:01.381Z"
+  },
+  {
+    "id": 1774322681478,
+    "user_id": 1774322681173,
+    "total_questions": 1,
+    "correct_count": 0,
+    "wrong_count": 1,
+    "score": 0,
+    "exam_time": 30,
+    "created_at": "2026-03-24T03:24:41.478Z"
+  }
+]

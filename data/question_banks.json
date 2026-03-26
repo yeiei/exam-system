@@ -1,0 +1,20 @@
+[
+  {
+    "id": "监护人",
+    "name": "监护人",
+    "work_type": "监护人",
+    "question_count": 514
+  },
+  {
+    "id": "电工",
+    "name": "电工",
+    "work_type": "电工",
+    "question_count": 272
+  },
+  {
+    "id": "高处安装维护",
+    "name": "高处安装维护",
+    "work_type": "高处安装维护",
+    "question_count": 268
+  }
+]
